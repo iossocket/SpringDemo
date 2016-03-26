@@ -3,6 +3,17 @@ package com.iossocket.controller;
 import com.iossocket.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RequestMapping("/springmvc")
@@ -71,5 +82,29 @@ public class SpringMVCTest {
     public String testPojo(User user) {
         System.out.println("testPojo: " + user);
         return SUCCESS;
+    }
+
+    @RequestMapping("/testServletAPI")
+    public void testServletAPI(HttpServletRequest request, HttpServletResponse response,
+                               Writer out) throws IOException {
+        System.out.println("testServletAPI, request" + request + ", response" + response);
+        out.write("hello springmvc");
+    }
+
+    @RequestMapping("/testModelAndView")
+    public ModelAndView testModelAndView() {
+
+        ModelAndView modelAndView = new ModelAndView("time");
+        modelAndView.addObject("time", new Date());
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/testMap")
+    public String testMap(Map<String, Object> map) {
+//        Map<String, Object> map = new HashMap<String, Object>();
+        map.getClass().get
+        map.put("names", Arrays.asList("Tom", "Jerry", "Mike"));
+        return "time";
     }
 }
