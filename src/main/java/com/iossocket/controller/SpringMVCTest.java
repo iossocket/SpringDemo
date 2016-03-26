@@ -1,5 +1,6 @@
 package com.iossocket.controller;
 
+import com.iossocket.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,6 +64,12 @@ public class SpringMVCTest {
     @RequestMapping("/testCookieValue")
     public String testCookieValue(@CookieValue("JSESSIONID") String sessionId) {
         System.out.println("Cookie value: " + sessionId);
+        return SUCCESS;
+    }
+
+    @RequestMapping("/testPojo")
+    public String testPojo(User user) {
+        System.out.println("testPojo: " + user);
         return SUCCESS;
     }
 }
