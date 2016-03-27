@@ -138,4 +138,15 @@ public class SpringMVCTest {
         System.out.println("update: " + user);
         return SUCCESS;
     }
+
+    /**
+     * 视图解析器的工作原理:
+     * 无论返回值是String, View 或是 ModelAndView类型, 视图解析器都将使其
+     * 转换为ModelAndView对象, 再由视图解析器进行解析并渲染
+     */
+    @RequestMapping("/testViewAndViewResolver")
+    public String testViewAndViewResolver() {
+        System.out.println("testViewAndViewResolver");
+        return SUCCESS;
+    }
 }
