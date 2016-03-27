@@ -10,10 +10,17 @@
 
     <context:component-scan base-package="com.iossocket.controller"></context:component-scan>
 
+    <!-- 配置 BeanNameViewResolver 视图解析器 -->
+    <!-- 通过order来定义视图解析器的优先级, order越小优先级越高, InternalResourceViewResolver的默认优先级的Integer.Max -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="100"></property>
+    </bean>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+
 
     <mvc:view-controller path="/time" view-name="time"/>
     <mvc:annotation-driven></mvc:annotation-driven>
