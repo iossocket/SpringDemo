@@ -4,11 +4,20 @@ package com.iossocket.entities;
  * Created by xlzhu on 3/26/16.
  */
 public class User {
+    private Integer id;
     private String username;
-    private String password;
     private String email;
     private int age;
     private Address address;
+    private String password;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -53,11 +62,24 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", address=" + address +
+                ", password='" + password + '\'' +
                 '}';
+    }
+
+    public User(Integer id, String username, String password, String email, int age) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+    }
+
+    public User() {
+
     }
 }

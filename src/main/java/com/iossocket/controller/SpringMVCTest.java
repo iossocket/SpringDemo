@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
-
+@SessionAttributes(value = {"user"}, types = {String.class})
 @RequestMapping("/springmvc")
 @Controller
 public class SpringMVCTest {
@@ -94,7 +94,6 @@ public class SpringMVCTest {
 
         ModelAndView modelAndView = new ModelAndView("time");
         modelAndView.addObject("time", new Date());
-
         return modelAndView;
     }
 
@@ -103,5 +102,40 @@ public class SpringMVCTest {
 //        Map<String, Object> map = new HashMap<String, Object>();
         map.put("names", Arrays.asList("Tom", "Jerry", "Mike"));
         return "time";
+    }
+
+    @RequestMapping("/testSessionAttributes")
+    public String testSessionAttributes(Map<String, Object> map) {
+        User user = new User(1, "Tom", "123", "Tom@gmail.com", 15);
+        map.put("user", user);
+        map.put("school", "xjtu");
+        return "time";
+    }
+
+    /**
+     * @ModelAttribute 标记的方法,会在每个目标方法执行之前被SpringMVC调用
+     */
+    @ModelAttribute
+    public void getUser(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
+        if (id != null) {
+            User user = new User(1, "zxl", "123", "zxl@1.com", 12);
+            System.out.println("Get model from db: " + user);
+
+            map.put("user", user);
+        }
+    }
+
+    /**
+     * 运行流程
+     * 1. 执行@ModelAttributes 注解修饰的方法: 从数据库中取出对象, 把对象放入Map中, Key为user
+     * 2. SpringMVC 从Map中取出User对象, 并把表单的请求参数赋给该User 对象的对应属性.
+     * 3. SpringMVC 将上一步修改过的user对象传入如下方法.
+     *
+     * Attention: 在@ModelAttribute修饰的方法中, 放入到Map时, Key值需要和Value的类同名(但首字母小写)
+     */
+    @RequestMapping("/testModelAttributes")
+    public String testModelAttributes(@ModelAttribute("user") User user) {
+        System.out.println("update: " + user);
+        return SUCCESS;
     }
 }

@@ -28,4 +28,17 @@
     <input type="submit" value="Submit">
 </form>
 
+<h4>test model attributes</h4>
+<br/>
+<form action="/springmvc/testModelAttributes" method="post">
+    <input type="hidden" name="id" value="1">
+    username: <input type="text" name="username"/><br/>
+    <%--password: <input type="password" name="password"/><br/>--%>
+    email: <input type="text" name="email"/><br/>
+    age: <input type="text" name="age"/><br/>
+    <%--city: <input type="text" name="address.city"/><br/>--%>
+    <%--province: <input type="text" name="address.province"/><br/>--%>
+    <input type="submit" value="Submit">
+</form>
+
 </html>
