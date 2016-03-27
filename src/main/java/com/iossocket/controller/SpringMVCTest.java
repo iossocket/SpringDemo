@@ -3,7 +3,6 @@ package com.iossocket.controller;
 import com.iossocket.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -103,7 +101,6 @@ public class SpringMVCTest {
     @RequestMapping("/testMap")
     public String testMap(Map<String, Object> map) {
 //        Map<String, Object> map = new HashMap<String, Object>();
-        map.getClass().get
         map.put("names", Arrays.asList("Tom", "Jerry", "Mike"));
         return "time";
     }
